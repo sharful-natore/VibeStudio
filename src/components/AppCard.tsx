@@ -32,7 +32,7 @@ export const AppCard: React.FC<AppCardProps> = ({
     >
       <div>
         {/* Top Header Row */}
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-3.5">
           
           {/* Optional Rank Number for Trending */}
           {rank !== undefined && (
@@ -45,17 +45,25 @@ export const AppCard: React.FC<AppCardProps> = ({
             </span>
           )}
 
-          {/* Squircle App Icon */}
+          {/* Squircle App Logo */}
           <div
-            className={`w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-tr ${app.color} p-[2px] shrink-0 shadow-md group-hover:scale-105 transition-transform duration-200`}
+            className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${app.color} p-[2px] shrink-0 shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden`}
           >
-            <div
-              className={`w-full h-full rounded-[13px] flex items-center justify-center text-2xl sm:text-3xl ${
-                isDarkMode ? 'bg-[#0b0d14]' : 'bg-slate-950 text-white'
-              }`}
-            >
-              {app.iconSymbol || '📱'}
-            </div>
+            {app.logoUrl ? (
+              <img
+                src={app.logoUrl}
+                alt={app.title}
+                className="w-full h-full object-cover rounded-[14px]"
+              />
+            ) : (
+              <div
+                className={`w-full h-full rounded-[14px] flex items-center justify-center text-2xl sm:text-3xl ${
+                  isDarkMode ? 'bg-[#0b0d14]' : 'bg-slate-950 text-white'
+                }`}
+              >
+                {app.iconSymbol || '⌨️'}
+              </div>
+            )}
           </div>
 
           {/* Title, Author & Wishlist Bookmark */}
@@ -77,7 +85,7 @@ export const AppCard: React.FC<AppCardProps> = ({
                   onToggleSave(app.id);
                 }}
                 title={isSaved ? 'Remove from Saved' : 'Save App'}
-                className={`p-1 transition-colors shrink-0 ${
+                className={`p-1 transition-colors shrink-0 cursor-pointer ${
                   isSaved
                     ? 'text-rose-500'
                     : isDarkMode
@@ -150,6 +158,36 @@ export const AppCard: React.FC<AppCardProps> = ({
         >
           {app.subtitle}
         </p>
+
+        {/* Mini Screenshot Thumbnails Strip */}
+        {app.screenshots && app.screenshots.length > 0 && (
+          <div className="flex items-center gap-2 mt-3 overflow-hidden">
+            {app.screenshots.slice(0, 4).map((screen, idx) => (
+              <div
+                key={idx}
+                className="w-12 h-20 rounded-lg overflow-hidden border border-black/10 dark:border-white/10 shrink-0 bg-slate-900 shadow-xs"
+              >
+                {screen.imageUrl ? (
+                  <img
+                    src={screen.imageUrl}
+                    alt={screen.title || `Screenshot ${idx + 1}`}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-slate-800" />
+                )}
+              </div>
+            ))}
+            <div
+              className={`text-[10px] font-semibold px-2 py-1 rounded-md ${
+                isDarkMode ? 'text-slate-400 bg-white/5' : 'text-slate-500 bg-slate-100'
+              }`}
+            >
+              +{app.screenshots.length} Screenshots
+            </div>
+          </div>
+        )}
       </div>
 
       {/* Action Bar */}
@@ -165,7 +203,7 @@ export const AppCard: React.FC<AppCardProps> = ({
               : 'text-slate-500 group-hover:text-indigo-600'
           }`}
         >
-          <span>Details</span>
+          <span>View Screenshots & Features</span>
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
         </span>
 
@@ -174,7 +212,7 @@ export const AppCard: React.FC<AppCardProps> = ({
             e.stopPropagation();
             onDownloadApk(app);
           }}
-          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs shadow-sm shadow-indigo-600/30 transition-all active:scale-95"
+          className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-bold text-xs shadow-sm shadow-indigo-600/30 transition-all active:scale-95 cursor-pointer"
         >
           <Download className="w-3.5 h-3.5" />
           <span>APK</span>

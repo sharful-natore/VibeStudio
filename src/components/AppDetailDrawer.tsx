@@ -15,6 +15,8 @@ import {
   FileText,
   Layers,
   Sparkles,
+  Maximize2,
+  CheckCircle2,
 } from 'lucide-react';
 
 interface AppDetailDrawerProps {
@@ -153,14 +155,22 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
             <div className="flex items-start gap-4">
               
               {/* App Icon */}
-              <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-tr ${app.color} p-[2px] shrink-0 shadow-lg`}>
-                <div
-                  className={`w-full h-full rounded-[22px] flex items-center justify-center text-4xl sm:text-5xl ${
-                    isDarkMode ? 'bg-[#0b0d16]' : 'bg-slate-950 text-white'
-                  }`}
-                >
-                  {app.iconSymbol || '📱'}
-                </div>
+              <div className={`w-20 h-20 sm:w-24 sm:h-24 rounded-3xl bg-gradient-to-tr ${app.color} p-[2px] shrink-0 shadow-lg overflow-hidden`}>
+                {app.logoUrl ? (
+                  <img
+                    src={app.logoUrl}
+                    alt={app.title}
+                    className="w-full h-full object-cover rounded-[22px]"
+                  />
+                ) : (
+                  <div
+                    className={`w-full h-full rounded-[22px] flex items-center justify-center text-4xl sm:text-5xl ${
+                      isDarkMode ? 'bg-[#0b0d16]' : 'bg-slate-950 text-white'
+                    }`}
+                  >
+                    {app.iconSymbol || '⌨️'}
+                  </div>
+                )}
               </div>
 
               {/* Title & Author */}
@@ -173,8 +183,10 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
                   {app.title}
                 </h1>
 
-                <p className="text-xs sm:text-sm text-indigo-500 dark:text-cyan-400 font-bold mt-1">
-                  By {app.developer} • {app.category}
+                <p className="text-xs sm:text-sm text-indigo-500 dark:text-cyan-400 font-bold mt-1 flex items-center gap-1">
+                  <span>By {app.developer}</span>
+                  <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400" />
+                  <span className="text-slate-500">• {app.category}</span>
                 </p>
 
                 <p
@@ -214,7 +226,7 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
                     isDarkMode ? 'text-white' : 'text-slate-900'
                   }`}
                 >
-                  {app.downloads || '100K+'}
+                  {app.downloads || '250K+'}
                 </div>
                 <div className="text-[10px] text-slate-400 mt-0.5">Downloads</div>
               </div>
@@ -306,32 +318,56 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
             {/* OVERVIEW TAB */}
             {activeTab === 'overview' && (
               <>
-                {/* Screenshots Carousel */}
+                {/* Horizontal Scrollable Screenshots Reel */}
                 {app.screenshots && app.screenshots.length > 0 && (
                   <div>
                     <h3
-                      className={`text-xs font-bold uppercase tracking-wider mb-3 flex items-center gap-1.5 ${
+                      className={`text-xs font-bold uppercase tracking-wider mb-3 flex items-center justify-between ${
                         isDarkMode ? 'text-slate-400' : 'text-slate-500'
                       }`}
                     >
-                      <Smartphone className="w-4 h-4 text-indigo-400" />
-                      <span>Interface & Feature Previews</span>
+                      <span className="flex items-center gap-1.5">
+                        <Smartphone className="w-4 h-4 text-indigo-400" />
+                        <span>অ্যাপ স্ক্রিনশট ({app.screenshots.length} Images)</span>
+                      </span>
+                      <span className="text-[10px] lowercase text-slate-400">← swipe horizontally →</span>
                     </h3>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {/* Horizontally scrollable reel */}
+                    <div className="flex gap-3.5 overflow-x-auto pb-3 pt-1 scrollbar-none snap-x snap-mandatory">
                       {app.screenshots.map((screen, idx) => (
                         <div
                           key={idx}
                           onClick={() => setSelectedScreenshot(screen)}
-                          className={`rounded-2xl bg-gradient-to-br ${
-                            screen.gradient || 'from-slate-800 to-slate-900'
-                          } p-4 text-white border border-white/10 shadow-md cursor-pointer hover:scale-[1.02] transition-transform`}
+                          className={`group relative flex-none w-[170px] sm:w-[190px] aspect-[9/19] rounded-2xl overflow-hidden cursor-pointer transition-all duration-300 snap-start border shadow-md hover:shadow-xl hover:scale-[1.02] ${
+                            isDarkMode
+                              ? 'bg-slate-950 border-white/[0.1] hover:border-indigo-400/50'
+                              : 'bg-slate-900 border-slate-200 hover:border-indigo-300'
+                          }`}
                         >
-                          <div className="w-9 h-9 rounded-xl bg-white/15 backdrop-blur-sm flex items-center justify-center mb-3">
-                            <Sparkles className="w-4 h-4 text-cyan-300" />
+                          {screen.imageUrl ? (
+                            <img
+                              src={screen.imageUrl}
+                              alt={screen.title || `Screenshot ${idx + 1}`}
+                              className="w-full h-full object-cover"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="w-full h-full bg-slate-800 flex items-center justify-center text-xs text-white">
+                              Preview
+                            </div>
+                          )}
+
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex flex-col justify-between p-3 opacity-90 group-hover:opacity-100 transition-opacity">
+                            <div className="flex justify-end">
+                              <div className="w-6 h-6 rounded-md bg-white/20 backdrop-blur-md flex items-center justify-center">
+                                <Maximize2 className="w-3.5 h-3.5 text-white" />
+                              </div>
+                            </div>
+                            <p className="text-white font-bold text-xs drop-shadow-md">
+                              {screen.title || `Screenshot ${idx + 1}`}
+                            </p>
                           </div>
-                          <h4 className="font-bold text-sm text-white mb-1">{screen.title}</h4>
-                          <p className="text-xs text-white/80 leading-relaxed">{screen.desc}</p>
                         </div>
                       ))}
                     </div>
@@ -353,7 +389,7 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
                       isDarkMode ? 'text-slate-300' : 'text-slate-700'
                     }`}
                   >
-                    {app.subtitle}
+                    {app.subtitle} — লিখন বাংলা কীবোর্ড একটি স্মার্ট, দ্রুত এবং সম্পূর্ণ অফলাইন বাংলা ও ইংরেজি কীবোর্ড। এতে রয়েছে বিল্ট-ইন এআই অ্যাসিস্ট্যান্ট, জনপ্রিয় সব লেআউট, লিকুইড ফ্রস্টেড গ্লাস থিম এবং ৩টি ভিন্ন ক্যালেন্ডারের সমন্বিত ডেট টুল।
                   </p>
                 </div>
 
@@ -374,7 +410,7 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
                       isDarkMode ? 'text-slate-400' : 'text-slate-600'
                     }`}
                   >
-                    Clean signature, zero ads, no telemetry, and safe offline storage.
+                    Clean signature, zero ads, no telemetry, and safe offline storage with local Room DB.
                   </p>
                 </div>
               </>
@@ -392,7 +428,7 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
                       }`}
                     >
                       <Layers className="w-4 h-4 text-indigo-400" />
-                      <span>Key Features</span>
+                      <span>Key Features (মূল ফিচারসমূহ)</span>
                     </h3>
                     <div className="space-y-2.5">
                       {app.features.map((feat, fIdx) => (
@@ -497,32 +533,40 @@ export const AppDetailDrawer: React.FC<AppDetailDrawerProps> = ({
       {selectedScreenshot && (
         <div
           onClick={() => setSelectedScreenshot(null)}
-          className="fixed inset-0 z-60 bg-black/85 flex items-center justify-center p-4 backdrop-blur-md"
+          className="fixed inset-0 z-60 bg-black/90 flex items-center justify-center p-3 sm:p-6 backdrop-blur-md animate-in fade-in duration-150"
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className={`max-w-md w-full rounded-3xl p-6 text-white bg-gradient-to-br ${
-              selectedScreenshot.gradient || 'from-slate-900 to-indigo-950'
-            } border border-white/20 shadow-2xl`}
+            className="relative max-w-sm w-full max-h-[92vh] flex flex-col items-center"
           >
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="font-bold text-base">{selectedScreenshot.title}</h3>
-              <button
-                onClick={() => setSelectedScreenshot(null)}
-                className="p-1.5 rounded-full bg-white/20 hover:bg-white/30"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-            <p className="text-sm text-white/90 leading-relaxed mb-6">
-              {selectedScreenshot.desc}
-            </p>
+            {/* Close Button */}
             <button
               onClick={() => setSelectedScreenshot(null)}
-              className="w-full py-2.5 rounded-xl bg-white text-slate-950 font-bold text-xs hover:bg-white/90"
+              className="absolute -top-12 right-0 p-2 rounded-full bg-white/20 text-white hover:bg-white/30 transition-colors cursor-pointer"
             >
-              Close Preview
+              <X className="w-5 h-5" />
             </button>
+
+            {/* Frame & Image */}
+            <div className="w-full rounded-3xl overflow-hidden border border-white/20 shadow-2xl bg-black">
+              {selectedScreenshot.imageUrl ? (
+                <img
+                  src={selectedScreenshot.imageUrl}
+                  alt={selectedScreenshot.title}
+                  className="w-full h-auto max-h-[78vh] object-contain mx-auto"
+                />
+              ) : (
+                <div className="p-8 text-white text-center">No image</div>
+              )}
+            </div>
+
+            {/* Caption */}
+            <div className="mt-3 text-center text-white px-4">
+              <h4 className="font-bold text-sm sm:text-base">{selectedScreenshot.title}</h4>
+              {selectedScreenshot.desc && (
+                <p className="text-xs text-slate-300 mt-1">{selectedScreenshot.desc}</p>
+              )}
+            </div>
           </div>
         </div>
       )}

@@ -11,6 +11,8 @@ import { PWAInstallBanner } from './components/PWAInstallBanner';
 import { IOSGuideModal } from './components/IOSGuideModal';
 import { DeveloperFooter } from './components/DeveloperFooter';
 import { MobileBottomNav } from './components/MobileBottomNav';
+import { ScreenshotGallery } from './components/ScreenshotGallery';
+import { AppFeaturesSection } from './components/AppFeaturesSection';
 import {
   Sparkles,
   Search,
@@ -19,7 +21,7 @@ import {
   TrendingUp,
 } from 'lucide-react';
 
-// Reliable app catalog data with VibeStudio developer branding
+// Live official app catalog data with real assets from Likhon.zip
 const INITIAL_APPS: AppItem[] = [
   {
     id: "likhon-keyboard",
@@ -32,13 +34,14 @@ const INITIAL_APPS: AppItem[] = [
     reviewsCount: "14.8K",
     downloads: "250K+",
     featured: true,
-    badge: "Featured #1",
+    badge: "Official Release #1",
     downloadUrl: "https://github.com/shorifbd24/likhon-keyboard/releases/download/v2.4.0/likhon_keyboard_v2.4.0.apk",
     developer: "VibeStudio",
     updatedDate: "October 2026",
     minAndroid: "Android 7.0+",
     color: "from-indigo-600 via-blue-600 to-cyan-500",
     iconSymbol: "⌨️",
+    logoUrl: "./likhon/Likhon_logo.png",
     features: [
       "Integrated AI Assistant for Bangla & English Proofreading, Grammar Fix, Tone Change & Translation.",
       "All Popular Layouts: Avro Phonetic, Jatiyo, Probhat, Unijoy & Gboard.",
@@ -50,177 +53,49 @@ const INITIAL_APPS: AppItem[] = [
     releaseNotes: "v2.4.0 Release Notes:\n• Upgraded AI Grammar & Proofreading engine with faster response times.\n• Introduced Liquid Glass Frosted Glass themes and dynamic wallpaper color extraction.\n• Updated Bangla Academy 2026 calendar algorithm for 100% precision.\n• Performance optimizations for low-memory devices and reduced latency.",
     screenshots: [
       {
-        "title": "AI Assistant & Proofreading",
-        "desc": "Grammar fix, tone changer, and instant Bangla-English translation directly inside your keyboard.",
-        "gradient": "from-blue-900 to-slate-900",
-        "icon": "sparkles"
+        id: "screen-1",
+        title: "AI Assistant & Proofreading",
+        desc: "Grammar fix, tone changer, and instant translation in 1-tap.",
+        imageUrl: "./likhon/Likhon1.jpg"
       },
       {
-        "title": "Avro, Jatiyo & Probhat Layouts",
-        "desc": "Switch effortlessly between phonetic typing and traditional official layouts.",
-        "gradient": "from-indigo-900 to-purple-950",
-        "icon": "keyboard"
+        id: "screen-2",
+        title: "Avro & Jatiyo Layouts",
+        desc: "All popular Bengali keyboard layouts supported seamlessly.",
+        imageUrl: "./likhon/Likhon2.jpg"
       },
       {
-        "title": "Frosted Liquid Glass Themes",
-        "desc": "Beautiful translucent glassmorphic themes with full photo wallpaper customization.",
-        "gradient": "from-cyan-900 to-blue-950",
-        "icon": "palette"
+        id: "screen-3",
+        title: "Liquid Glass Themes",
+        desc: "Translucent frosted glass aesthetics with wallpaper colors.",
+        imageUrl: "./likhon/Likhon3.jpg"
       },
       {
-        "title": "Tri-Calendar & Voice Typing",
-        "desc": "Instant 1-tap view of Bangla Academy, Gregorian & Hijri dates + accurate offline voice input.",
-        "gradient": "from-emerald-900 to-teal-950",
-        "icon": "calendar"
-      }
-    ],
-    tags: ["Bangla", "AI Assistant", "Avro", "Jatiyo", "Probhat", "Offline", "Keyboard"]
-  },
-  {
-    id: "toolsmate",
-    title: "ToolsMate",
-    subtitle: "All-in-One Smart Utility Toolkit",
-    version: "v1.0.0",
-    size: "8.2 MB",
-    category: "Utilities & Tools",
-    rating: 4.7,
-    reviewsCount: "8.3K",
-    downloads: "80K+",
-    featured: true,
-    badge: "Top Utility",
-    downloadUrl: "https://github.com/shorifbd24/toolsmate/releases/download/v1.0.0/toolsmate_v1.0.0.apk",
-    developer: "VibeStudio",
-    updatedDate: "September 2026",
-    minAndroid: "Android 6.0+",
-    color: "from-emerald-500 via-teal-600 to-cyan-600",
-    iconSymbol: "🛠️",
-    features: [
-      "Unit & Currency Converter with real-time exchange rates.",
-      "QR Code & Barcode Scanner with History.",
-      "Smart Compass, Speedometer & Device Sensor Monitor.",
-      "Clean, ad-free UI with dark mode support."
-    ],
-    releaseNotes: "v1.0.0 Initial Release:\n• Launched 25+ essential daily micro-utilities in a single lightweight APK.\n• Offline QR scanner with instant copy and URL launch.\n• High-precision sensor monitor (GPS, Accelerometer, Magnetometer).",
-    screenshots: [
-      {
-        "title": "Unit & Live Currency Converter",
-        "desc": "Convert currencies and physical units instantly with offline cache.",
-        "gradient": "from-emerald-950 to-slate-900",
-        "icon": "repeat"
+        id: "screen-4",
+        title: "Tri-Calendar Tool",
+        desc: "Bangla Academy, Gregorian, and Hijri dates at a glance.",
+        imageUrl: "./likhon/Likhon4.jpg"
       },
       {
-        "title": "QR & Barcode Scanner",
-        "desc": "Lightning fast camera scanning with history export.",
-        "gradient": "from-teal-950 to-cyan-950",
-        "icon": "qr-code"
-      }
-    ],
-    tags: ["Converter", "QR Scanner", "Compass", "Utilities", "Speedometer"]
-  },
-  {
-    id: "financenote",
-    title: "Finance Note",
-    subtitle: "Smart Expense & Budget Manager",
-    version: "v1.2.0",
-    size: "11.4 MB",
-    category: "Finance",
-    rating: 4.8,
-    reviewsCount: "11.1K",
-    downloads: "120K+",
-    featured: true,
-    badge: "Finance Essential",
-    downloadUrl: "https://github.com/shorifbd24/financenote/releases/download/v1.2.0/financenote_v1.2.0.apk",
-    developer: "VibeStudio",
-    updatedDate: "August 2026",
-    minAndroid: "Android 7.0+",
-    color: "from-amber-500 via-orange-600 to-rose-600",
-    iconSymbol: "📊",
-    features: [
-      "Instant income and daily expense tracking with category charts.",
-      "Monthly budget limits with smart overspend alerts.",
-      "Offline local SQLite database with JSON/CSV export option.",
-      "Biometric PIN/Fingerprint lock for private financial data."
-    ],
-    releaseNotes: "v1.2.0 Release Notes:\n• CSV/JSON data backup & cloud export.\n• Enhanced monthly budget forecasting with category breakdown.\n• Fingerprint & PIN security lock improvements.",
-    screenshots: [
+        id: "screen-5",
+        title: "Voice Typing & Gestures",
+        desc: "Fast accurate offline voice typing and glide gesture typing.",
+        imageUrl: "./likhon/Likhon5.jpg"
+      },
       {
-        "title": "Visual Expense Analytics",
-        "desc": "Intuitive ring charts and monthly income vs expense breakdown.",
-        "gradient": "from-orange-950 to-amber-950",
-        "icon": "pie-chart"
-      }
-    ],
-    tags: ["Finance", "Budget", "Expense Tracker", "SQLite", "Biometric"]
-  },
-  {
-    id: "devpad-code",
-    title: "DevPad Code Editor",
-    subtitle: "Lightweight Mobile IDE & Markdown Notes",
-    version: "v1.5.0",
-    size: "14.2 MB",
-    category: "Utilities & Tools",
-    rating: 4.8,
-    reviewsCount: "6.4K",
-    downloads: "45K+",
-    featured: false,
-    badge: "Dev Tool",
-    downloadUrl: "https://github.com/shorifbd24/likhon-keyboard/releases/download/v2.4.0/likhon_keyboard_v2.4.0.apk",
-    developer: "VibeStudio",
-    updatedDate: "September 2026",
-    minAndroid: "Android 8.0+",
-    color: "from-violet-600 via-purple-600 to-pink-600",
-    iconSymbol: "⚡",
-    features: [
-      "Syntax highlighting for JavaScript, Python, HTML/CSS, JSON & Markdown.",
-      "Built-in web preview for HTML/JS projects.",
-      "GitHub Gist sync and local folder file tree access.",
-      "Distraction-free dark mode with custom font support."
-    ],
-    releaseNotes: "v1.5.0: Added live HTML/CSS web preview, auto-brackets closing, and line numbers customization.",
-    screenshots: [
+        id: "screen-6",
+        title: "Smart Clipboard",
+        desc: "Pin and manage your copied texts with zero data leaks.",
+        imageUrl: "./likhon/Likhon6.jpg"
+      },
       {
-        "title": "Syntax Highlighting & Autocomplete",
-        "desc": "Crisp code editor with multi-language highlighting on mobile.",
-        "gradient": "from-violet-950 to-purple-950",
-        "icon": "code"
+        id: "screen-7",
+        title: "Zero Tracking & 100% Private",
+        desc: "Local Room DB memory, zero keylogging, total privacy.",
+        imageUrl: "./likhon/Likhon7.jpg"
       }
     ],
-    tags: ["Code Editor", "IDE", "Developer", "Markdown", "GitHub"]
-  },
-  {
-    id: "audiopulse",
-    title: "AudioPulse Music Player",
-    subtitle: "FLAC/MP3 Player with 10-Band EQ & Lyric Sync",
-    version: "v2.1.0",
-    size: "9.8 MB",
-    category: "Media & Audio",
-    rating: 4.6,
-    reviewsCount: "9.2K",
-    downloads: "95K+",
-    featured: false,
-    badge: "Hi-Res Audio",
-    downloadUrl: "https://github.com/shorifbd24/toolsmate/releases/download/v1.0.0/toolsmate_v1.0.0.apk",
-    developer: "VibeStudio",
-    updatedDate: "July 2026",
-    minAndroid: "Android 7.0+",
-    color: "from-cyan-500 via-blue-600 to-indigo-700",
-    iconSymbol: "🎵",
-    features: [
-      "Lossless FLAC, WAV, and MP3 audio playback engine.",
-      "10-Band Graphic Equalizer with bass boost & virtualizer.",
-      "Synchronized LRC lyrics viewer with auto-scroll.",
-      "Sleep timer & gapless playback mode."
-    ],
-    releaseNotes: "v2.1.0: Lyric sync improvements, dynamic theme matching album art colors, sleep timer shortcut.",
-    screenshots: [
-      {
-        "title": "10-Band Equalizer",
-        "desc": "Fine-tune bass, treble, and acoustic profiles with zero distortion.",
-        "gradient": "from-cyan-950 to-blue-950",
-        "icon": "sliders"
-      }
-    ],
-    tags: ["Music", "Audio Player", "Equalizer", "FLAC", "Lyrics"]
+    tags: ["Bangla", "AI Assistant", "Avro", "Jatiyo", "Probhat", "Offline", "Keyboard", "Android"]
   }
 ];
 
@@ -400,12 +275,25 @@ export default function App() {
 
         {/* Hero Spotlight Banner (Only on 'explore' tab when not searching) */}
         {activeNavTab === 'explore' && !searchQuery && (
-          <HeroCarousel
-            featuredApps={featuredApps}
-            onSelectApp={(app) => setSelectedAppDetail(app)}
-            onDownloadApk={(app) => setDownloadingApp(app)}
-            isDarkMode={isDarkMode}
-          />
+          <>
+            <HeroCarousel
+              featuredApps={featuredApps}
+              onSelectApp={(app) => setSelectedAppDetail(app)}
+              onDownloadApk={(app) => setDownloadingApp(app)}
+              isDarkMode={isDarkMode}
+            />
+
+            {/* Horizontal Scrollable Screenshots Reel */}
+            {apps[0] && apps[0].screenshots && (
+              <ScreenshotGallery
+                screenshots={apps[0].screenshots}
+                isDarkMode={isDarkMode}
+              />
+            )}
+
+            {/* Dedicated Separated Features Section */}
+            <AppFeaturesSection isDarkMode={isDarkMode} />
+          </>
         )}
 
         {/* Category Filters Bar */}

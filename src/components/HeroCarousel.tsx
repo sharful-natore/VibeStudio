@@ -104,15 +104,23 @@ export const HeroCarousel: React.FC<HeroCarouselProps> = ({
           {/* App Squircle Icon */}
           <div
             onClick={() => onSelectApp(activeApp)}
-            className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${activeApp.color} p-[2px] shrink-0 shadow-md cursor-pointer hover:scale-105 transition-transform duration-200`}
+            className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${activeApp.color} p-[2px] shrink-0 shadow-md cursor-pointer hover:scale-105 transition-transform duration-200 overflow-hidden`}
           >
-            <div
-              className={`w-full h-full rounded-[14px] flex items-center justify-center text-3xl sm:text-4xl ${
-                isDarkMode ? 'bg-[#0c0e18]' : 'bg-slate-950 text-white'
-              }`}
-            >
-              {activeApp.iconSymbol || '📱'}
-            </div>
+            {activeApp.logoUrl ? (
+              <img
+                src={activeApp.logoUrl}
+                alt={activeApp.title}
+                className="w-full h-full object-cover rounded-[14px]"
+              />
+            ) : (
+              <div
+                className={`w-full h-full rounded-[14px] flex items-center justify-center text-3xl sm:text-4xl ${
+                  isDarkMode ? 'bg-[#0c0e18]' : 'bg-slate-950 text-white'
+                }`}
+              >
+                {activeApp.iconSymbol || '⌨️'}
+              </div>
+            )}
           </div>
 
           {/* Title & Description Details */}

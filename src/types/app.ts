@@ -1,6 +1,8 @@
 export interface ScreenshotItem {
-  title: string;
-  desc: string;
+  id?: string;
+  title?: string;
+  desc?: string;
+  imageUrl: string;
   gradient?: string;
   icon?: string;
 }
@@ -23,6 +25,7 @@ export interface AppItem {
   minAndroid: string;
   color: string;
   iconSymbol?: string;
+  logoUrl?: string;
   features: string[];
   releaseNotes: string;
   screenshots: ScreenshotItem[];

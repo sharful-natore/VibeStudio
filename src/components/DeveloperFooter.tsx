@@ -60,7 +60,7 @@ export const DeveloperFooter: React.FC<DeveloperFooterProps> = ({ isDarkMode }) 
                 isDarkMode ? 'text-white' : 'text-slate-900'
               }`}
             >
-              Curated Apps
+              Featured Release
             </h4>
             <ul className="space-y-2">
               <li>
@@ -68,31 +68,20 @@ export const DeveloperFooter: React.FC<DeveloperFooterProps> = ({ isDarkMode }) 
                   href="https://github.com/shorifbd24/likhon-keyboard"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-indigo-400 transition-colors flex items-center gap-1"
+                  className="hover:text-indigo-400 transition-colors flex items-center gap-1 font-semibold"
                 >
-                  <span>Likhon Bangla Keyboard</span>
+                  <span>Likhon Bangla Keyboard (v2.4.0)</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
               </li>
               <li>
                 <a
-                  href="https://github.com/shorifbd24/toolsmate"
+                  href="https://github.com/shorifbd24/likhon-keyboard/releases"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-indigo-400 transition-colors flex items-center gap-1"
+                  className="hover:text-indigo-400 transition-colors flex items-center gap-1 text-slate-500 dark:text-slate-400"
                 >
-                  <span>ToolsMate Utilities</span>
-                  <ExternalLink className="w-3 h-3 opacity-60" />
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/shorifbd24/financenote"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-indigo-400 transition-colors flex items-center gap-1"
-                >
-                  <span>Finance Note Manager</span>
+                  <span>All Release Notes & APKs</span>
                   <ExternalLink className="w-3 h-3 opacity-60" />
                 </a>
               </li>
