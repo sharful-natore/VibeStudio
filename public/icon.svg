@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="100%" height="100%">
+  <defs>
+    <linearGradient id="vibeBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a" />
+      <stop offset="100%" stop-color="#020617" />
+    </linearGradient>
+    <linearGradient id="vibeGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1" />
+      <stop offset="50%" stop-color="#3b82f6" />
+      <stop offset="100%" stop-color="#06b6d4" />
+    </linearGradient>
+    <linearGradient id="vibeAccent" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ec4899" />
+      <stop offset="100%" stop-color="#8b5cf6" />
+    </linearGradient>
+    <filter id="glowFilter" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="16" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Clean Rounded Square Frame -->
+  <rect width="512" height="512" rx="120" fill="url(#vibeBg)" />
+  <rect x="8" y="8" width="496" height="496" rx="112" fill="none" stroke="#334155" stroke-width="3" stroke-opacity="0.4" />
+
+  <!-- Unique Stylized "V" Wave Glyph -->
+  <g filter="url(#glowFilter)" transform="translate(64, 48)">
+    <!-- Right Blade -->
+    <path d="M240 340 L330 110 C334 100 326 90 315 90 L270 90 C262 90 255 95 252 103 L192 270 L240 340 Z" fill="url(#vibeGlow)" />
+    <!-- Left Blade -->
+    <path d="M54 110 C50 100 58 90 69 90 L114 90 C122 90 129 95 132 103 L204 290 C207 298 218 298 221 290 L246 220 L212 170 L158 90" fill="url(#vibeAccent)" opacity="0.95" />
+    <!-- Center Wave Core -->
+    <circle cx="192" cy="350" r="14" fill="#38bdf8" />
+  </g>
+</svg>

@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@variant dark (&:is(.dark, .dark *));
+
+/* Pure Dark & Light mode global variables and baseline styling */
+:root {
+  --app-bg: #f8fafc;
+  --app-card: #ffffff;
+  --app-border: #e2e8f0;
+  --app-text: #0f172a;
+  --app-text-muted: #64748b;
+  color-scheme: light;
+}
+
+html.dark,
+.dark {
+  --app-bg: #090b12;
+  --app-card: #111422;
+  --app-card-hover: #161a2e;
+  --app-border: rgba(255, 255, 255, 0.08);
+  --app-text: #f8fafc;
+  --app-text-muted: #94a3b8;
+  color-scheme: dark;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html.dark body {
+  background-color: #090b12;
+  color: #f8fafc;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* Custom scrollbar styling for category rail */
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

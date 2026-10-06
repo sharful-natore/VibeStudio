@@ -1,0 +1,6 @@
+{
+  "name": "AppVault - PWA & APK Web App Store",
+  "description": "Modern Web App Store and APK Hub featuring Likhon Bangla Keyboard, ToolsMate, Finance Note, instant search, category filters, interactive app detail drawers, and PWA installation.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

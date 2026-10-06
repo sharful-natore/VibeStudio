@@ -1,0 +1,19 @@
+{
+  "id": "./",
+  "name": "VibeStudio – Modern App Store",
+  "short_name": "VibeStudio",
+  "description": "Explore, search, and download top Android APKs and Progressive Web Apps with Google Play inspired minimal design.",
+  "theme_color": "#01875f",
+  "background_color": "#121316",
+  "display": "standalone",
+  "start_url": "./",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
